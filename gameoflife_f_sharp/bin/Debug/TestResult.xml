@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\gameoflife_f_sharp.dll" total="15" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-10-31" time="17:39:10">
+  <environment nunit-version="2.5.7.10213" clr-version="2.0.50727.4952" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Windows\system32" machine-name="TONYX-NB" user="tonyx" user-domain="tonyx-NB" />
+  <culture-info current-culture="it-IT" current-uiculture="it-IT" />
+  <test-suite type="Assembly" name="C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\gameoflife_f_sharp.dll" executed="True" result="Success" success="True" time="0.215" asserts="0">
+    <results>
+      <test-suite type="TestFixture" name="Module1+lkjfdlf lkdjdfdfdfaldfa " executed="True" result="Success" success="True" time="0.201" asserts="0">
+        <results>
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .con coufasdfnt" executed="True" result="Success" success="True" time="0.049" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .con count" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .count neigh including itself" executed="True" result="Success" success="True" time="0.006" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .count neighborhs" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .count neighborhs 1" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .count neighborhs 2" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .count neighborhs 3" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .dslkfkdlflksadfas fd" executed="True" result="Success" success="True" time="0.045" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .fsdfds " executed="True" result="Success" success="True" time="0.004" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .map dfaaaaaaaaaaaaaaaaaaaaunt " executed="True" result="Success" success="True" time="0.002" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .map dfsasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaunt " executed="True" result="Success" success="True" time="0.002" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .map for getting the neigh count " executed="True" result="Success" success="True" time="0.004" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .map for getting the neigh count dfd" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .map for getting the neigh count dfddfd" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+          <test-case name="Module1+lkjfdlf lkdjdfdfdfaldfa .single line evolution " executed="True" result="Success" success="True" time="0.001" asserts="1" />
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
