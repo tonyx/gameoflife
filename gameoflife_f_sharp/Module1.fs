@@ -137,20 +137,7 @@ let mutable mat = randommatrix 0 []
 
 form.Paint.Add(fun e -> paint (e.Graphics)  mat)
 
-//form.MouseClick.Add(fun e -> mat <- mevolve mat; form.Refresh())
 
-//form.Paint.AddHandler(new PaintEventHandler(fun x -> mat <- mevolve mat; form.Refresh()))
-//form.
-
-
-//form.Paint.AddHandler(new PaintEventHandler(fun x -> mat <- mevolve mat; form.Refresh()))
-
-//let worker = new BackgroundWorker()
-//worker.DoWork.Add(fun args -> form.Paint.Add(fun e paint 
-
-
-//form.MainMenuStrip <- setupMenu()
-//form.Controls.Add(form.MainMenuStrip)
 
 
 type myDelegate = delegate of unit -> unit
@@ -170,7 +157,7 @@ let aloop x =
 let nst = new myDelegate(fun x  -> aloop x)
 
 
-//let p = form.Invoke(nst)
+let p = form.Invoke(nst)
 
 
 
