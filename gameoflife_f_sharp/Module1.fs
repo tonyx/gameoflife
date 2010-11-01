@@ -16,6 +16,7 @@ let rec countneight previous alist =
     | 'x'::' '::T ->   [previous] @  (countneight 1 ([' '] @ T))
     | _::[] -> [previous]
 
+
 let rec countneighall previous alist =
     match alist with
     | ' '::' '::T ->   [previous] @  (countneighall 0 ([' '] @ T))
@@ -174,21 +175,20 @@ let p = form.Invoke(nst)
    ``matrix to rectangles`` ()=
    Assert.AreEqual(8, List.length (matrixtoRectangles 0 [['x';'x';'x'];['x';' ';'x'];['x';'x';'x']]) )
 
- 
   [<Test>] member test.
-   ``count neighborhs`` ()=
+   ``for a 3 sized line of empty elements, the count of neighbours is a three sized sequence with all zero`` ()=
    Assert.AreEqual([0;0;0], countneight 0 [' ';' ';' '])
 
   [<Test>] member test.
-   ``count neighborhs 1`` ()=
+   ``for a 4 sized line of empty elements, the count of neighbours is a 4 sized sequence with all zero`` ()=
    Assert.AreEqual([0;0;0;0], countneight 0 [' ';' ';' ';' '])
 
   [<Test>] member test.
-   ``count neighborhs 2`` ()=
+   ``for a 4 sized line with only first non empty the count of neighbours is a 4 sized sequence with a 1 and resting 0`` ()=
    Assert.AreEqual([0;1;0;0], countneight 0 ['x';' ';' ';' '])
 
   [<Test>] member test.
-   ``count neighborhs 3`` ()=
+   ``first two element non empty, 1,1,1,0 (the first has as neighbour the second, the second, the first, etc... `` ()=
    Assert.AreEqual([1;1;1;0], countneight 0 ['x';'x';' ';' '])
 
   [<Test>] member test.
@@ -196,25 +196,25 @@ let p = form.Invoke(nst)
    Assert.AreEqual([2;2;1], countneighall 0 ['x';'x';' ']  )
 
   [<Test>] member test.
-   ``map for getting the neigh count `` ()=
+   ``neicount should get triplets of the neighbours in the preceding line, the current line and the following line`` ()=
    Assert.AreEqual([[(0,1,2);(0,2,3);(0,1,2)];[(2,1,2);(3,2,3);(2,1,2)];[(2,1,0);(3,2,0);(2,1,0)]], neicount [' ';' ';' '] [['x';'x';'x'];['x';'x';'x'];['x';'x';'x']])
 
   [<Test>] member test.
-   ``map for getting the neigh count dfd`` ()=
+   ``neicount should get triplets of the neighbours`` ()=
    Assert.AreEqual([[(0,0,1);(0,2,2);(0,0,1)];[(1,0,1);(2,2,2);(1,0,1)];[(1,0,0);(2,2,0);(1,0,0)]], neicount [' ';' ';' '] [['x';' ';'x'];['x';' ';'x'];['x';' ';'x']])
 
   [<Test>] member test.
-   ``map for getting the neigh count dfddfd`` ()=
+   ``neicount should get triplets of the neighbour...`` ()=
    Assert.AreEqual([[(0,0,1);(0,1,2);(0,0,1)];[(0,0,1);(1,2,2);(1,0,1)];[(1,0,0);(2,2,0);(1,0,0)]], neicount [' ';' ';' '] [[' ';' ';'x'];['x';' ';'x'];['x';' ';'x']])
 
 
 
   [<Test>] member test.
-   ``con count`` ()=
+   ``can sum triplets of neighbors count con counts in a line`` ()=
    Assert.AreEqual([5;8;6], sumsOfTriplets [(2,1,2);(3,2,3);(3,1,2)] )
 
   [<Test>] member test.
-   ``con coufasdfnt`` ()=
+   ``can sum triplets of neighbors count in more lines`` ()=
    Assert.AreEqual([[5;8;6];[5;8;6]], bigsum [[(2,1,2);(3,2,3);(3,1,2)];[(2,1,2);(3,2,3);(3,1,2)]])
 
   [<Test>] member test.
