@@ -94,8 +94,10 @@ let rec matrixtoRectangles indexy matrix =
     | _ -> []
 
 
+let bru = new SolidBrush(Color.Black)
+
 let paint (g:Graphics) matrix =
-    matrixtoRectangles 60 matrix |> List.iter(fun x -> g.FillRectangle(new SolidBrush(Color.Black),x))
+      matrixtoRectangles 60 matrix |> List.iter(fun x -> g.FillRectangle(bru,x))
 
 let form = new Form(Text="Game of life")
 
