@@ -2,6 +2,11 @@
 
 module Module1
 open NUnit.Framework
+open System
+open System.Drawing
+open System.Windows.Forms
+open System.ComponentModel
+open System.Threading
 
 let rec countneight previous alist =
     match alist with
@@ -20,7 +25,7 @@ let rec countneighall previous alist =
     | 'x'::[] -> [previous+1]
     | ' '::[] -> [previous]
 
-
+    
 let rec sumsOfTriplets thesum=
     match thesum with
     | (a,b,c)::T -> [a+b+c] @ sumsOfTriplets T
@@ -35,7 +40,7 @@ let rec bigsum thesum=
 let rec neicount previous alist =
     match alist with
     | H1 :: H2 :: T -> [List.zip3 (countneighall 0  previous) (countneight 0 H1) (countneighall 0 H2)] @ neicount H1 (H2::T)
-    | H :: [] -> [List.zip3 (countneighall 0 previous) (countneight 0 H) (countneighall 0 [' ';' ';' '])]
+    | H :: [] -> [List.zip3 (countneighall 0 previous) (countneight 0 H) (countneighall 0 ([1.. (List.length H)] |> List.fold (fun acc x -> acc @ [' '])[]))]
     | _ -> []
 
 
@@ -69,9 +74,123 @@ let mevolve mat =
     sevolve (matrixnei mat)
 
 
+Application.EnableVisualStyles()
+Application.SetCompatibleTextRenderingDefault(false)
+
+
+let brush = new SolidBrush(Color.Black)
+
+let size = new SizeF((float32)5.0,(float32)5.0)
+
+let rec singleaccum countx county matrix =
+    match matrix with
+    | 'x'::T -> new RectangleF(new PointF((float32)countx,(float32)county), size) :: singleaccum (countx + 5) county T
+    | ' '::T -> singleaccum (countx + 5) county T
+    | _ -> []
+
+let rec matrixtoRectangles indexy matrix =
+    match matrix with
+    | H::T -> (singleaccum 0 indexy H) @ matrixtoRectangles (indexy + 5) T
+    | _ -> []
+
+
+let paint (g:Graphics) matrix =
+    matrixtoRectangles 60 matrix |> List.iter(fun x -> g.FillRectangle(new SolidBrush(Color.Black),x))
+
+let form = new Form(Text="Game of life")
+
+let setupMenu () =
+    let menu = new MenuStrip()
+    let fileMenuItem = new ToolStripMenuItem("&File")
+    let settMenuItem = new ToolStripMenuItem("&Settings")
+    let exitMenuItem = new ToolStripMenuItem("&Exit")
+    menu.Items.Add(fileMenuItem) |> ignore
+    menu.Items.Add(settMenuItem) |> ignore
+    fileMenuItem.DropDownItems.Add(exitMenuItem) |> ignore
+    exitMenuItem.Click.Add(fun _ -> form.Close ())
+    menu
+
+form.MainMenuStrip <- setupMenu()
+form.Controls.Add(form.MainMenuStrip)
+
+let rand = new Random()
+
+let rec randomrow index acc =
+    if (index<300) then
+        if (rand.NextDouble() > 0.5) then 
+            randomrow (index + 1) (' ' :: acc) 
+        else 
+            randomrow (index + 1) ('x' :: acc)
+    else acc
+
+let rec randommatrix index acc =
+    if index < 100 then
+        [randomrow 0 []]   @ randommatrix (index + 1) acc 
+    else 
+        acc
+
+
+
+let mutable mat = randommatrix 0 []
+
+
+
+form.Paint.Add(fun e -> paint (e.Graphics)  mat)
+
+//form.MouseClick.Add(fun e -> mat <- mevolve mat; form.Refresh())
+
+//form.Paint.AddHandler(new PaintEventHandler(fun x -> mat <- mevolve mat; form.Refresh()))
+//form.
+
+
+//form.Paint.AddHandler(new PaintEventHandler(fun x -> mat <- mevolve mat; form.Refresh()))
+
+//let worker = new BackgroundWorker()
+//worker.DoWork.Add(fun args -> form.Paint.Add(fun e paint 
+
+
+//form.MainMenuStrip <- setupMenu()
+//form.Controls.Add(form.MainMenuStrip)
+
+
+type myDelegate = delegate of unit -> unit
+
+
+
+form.Width <- 1000
+form.Height <-700
+form.Show()
+
+let aloop x =
+    while true do
+        mat <- mevolve mat
+        Thread.Sleep(10)
+        form.Refresh()
+
+let nst = new myDelegate(fun x  -> aloop x)
+
+
+//let p = form.Invoke(nst)
+
+
+
+
+[<STAThread>]
+ do Application.Run(form)
+
+
 
 [<TestFixture>]
  type ``lkjfdlf lkdjdfdfdfaldfa `` ()=
+
+  [<Test>] member test.
+   ``matrix to rectangles`` ()=
+   Assert.AreEqual(8, List.length (matrixtoRectangles 0 [['x';'x';'x'];['x';' ';'x'];['x';'x';'x']]) )
+
+  [<Test>] member test.
+   `` random row `` ()=
+   Assert.AreEqual([], randomrow 0 [])
+
  
   [<Test>] member test.
    ``count neighborhs`` ()=

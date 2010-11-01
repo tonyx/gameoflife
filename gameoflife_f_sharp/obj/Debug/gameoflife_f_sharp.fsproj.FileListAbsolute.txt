@@ -1,8 +1,8 @@
 C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\gameoflife_f_sharp.XML
-C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\gameoflife_f_sharp.dll
 C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\gameoflife_f_sharp.pdb
 C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\nunit.framework.dll
 C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\nunit.framework.xml
 C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\obj\Debug\gameoflife_f_sharp.dll
 C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\obj\Debug\gameoflife_f_sharp.pdb
+C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\bin\Debug\gameoflife_f_sharp.exe
+C:\Users\tonyx\Documents\Visual Studio 2010\Projects\gameoflife_f_sharp\gameoflife_f_sharp\obj\Debug\gameoflife_f_sharp.exe
