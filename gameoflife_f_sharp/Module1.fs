@@ -136,9 +136,7 @@ let rec randommatrix index acc =
 let mutable mat = randommatrix 0 []
 
 
-
 form.Paint.Add(fun e -> paint (e.Graphics)  mat)
-
 
 
 
@@ -153,7 +151,7 @@ form.Show()
 let aloop x =
     while true do
         mat <- mevolve mat
-        Thread.Sleep(10)
+        Thread.Sleep(15)
         form.Refresh()
 
 let nst = new myDelegate(fun x  -> aloop x)
@@ -164,8 +162,8 @@ let p = form.Invoke(nst)
 
 
 
-[<STAThread>]
- do Application.Run(form)
+//[<STAThread>]
+// do Application.Run(form)
 
 
 
@@ -175,10 +173,6 @@ let p = form.Invoke(nst)
   [<Test>] member test.
    ``matrix to rectangles`` ()=
    Assert.AreEqual(8, List.length (matrixtoRectangles 0 [['x';'x';'x'];['x';' ';'x'];['x';'x';'x']]) )
-
-  [<Test>] member test.
-   `` random row `` ()=
-   Assert.AreEqual([], randomrow 0 [])
 
  
   [<Test>] member test.
