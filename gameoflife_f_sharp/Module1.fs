@@ -45,13 +45,13 @@ let rec neicount previous alist =
     | _ -> []
 
 
-let rec reczip lll aaa =
-    match lll,aaa with
+let rec reczip first second =
+    match first,second with
     |H1::T1,H2::T2 -> [(List.zip H1 H2)] @ (reczip T1 T2)
     | _ -> [] 
 
 
-let matrixnei alist =
+let matrixToNeighboursCountForCellNotation alist =
     let pre = [1.. (List.length (List.head alist))] |> Seq.fold (fun acc x -> acc @ [' '])[]
     let nei = bigsum (neicount pre alist)
     reczip alist nei
@@ -65,14 +65,14 @@ let rec singleLineEvolution alist =
     | _ -> []
 
 
-let rec sevolve mat =
+let rec evolveFromMatrixWithCountNotation mat =
     match mat with
-    | H::T -> (singleLineEvolution H) :: sevolve T
+    | H::T -> (singleLineEvolution H) :: evolveFromMatrixWithCountNotation T
     | _ -> []
 
 
-let mevolve mat =
-    sevolve (matrixnei mat)
+let nextGenerationMatrix mat =
+    evolveFromMatrixWithCountNotation (matrixToNeighboursCountForCellNotation mat)
 
 
 Application.EnableVisualStyles()
@@ -145,18 +145,19 @@ type myDelegate = delegate of unit -> unit
 
 
 
-form.Width <- 1000
+form.Width <- 1600
 form.Height <-700
 form.Show()
+//
+
 
 let aloop x =
     while true do
-        mat <- mevolve mat
-        Thread.Sleep(15)
+        mat <- nextGenerationMatrix mat
+        Thread.Sleep(10)
         form.Refresh()
 
 let nst = new myDelegate(fun x  -> aloop x)
-
 
 let p = form.Invoke(nst)
 
@@ -164,16 +165,18 @@ let p = form.Invoke(nst)
 
 
 //[<STAThread>]
-// do Application.Run(form)
+// do 
+//   Application.Run(form)
 
 
-
+  
 [<TestFixture>]
  type ``lkjfdlf lkdjdfdfdfaldfa `` ()=
 
   [<Test>] member test.
    ``matrix to rectangles`` ()=
    Assert.AreEqual(8, List.length (matrixtoRectangles 0 [['x';'x';'x'];['x';' ';'x'];['x';'x';'x']]) )
+
 
   [<Test>] member test.
    ``for a 3 sized line of empty elements, the count of neighbours is a three sized sequence with all zero`` ()=
@@ -196,8 +199,14 @@ let p = form.Invoke(nst)
    Assert.AreEqual([2;2;1], countneighall 0 ['x';'x';' ']  )
 
   [<Test>] member test.
+   ``count neigh not including itself`` ()=
+   Assert.AreEqual([1;1;1], countneight 0 ['x';'x';' ']  )
+
+  [<Test>] member test.
    ``neicount should get triplets of the neighbours in the preceding line, the current line and the following line`` ()=
-   Assert.AreEqual([[(0,1,2);(0,2,3);(0,1,2)];[(2,1,2);(3,2,3);(2,1,2)];[(2,1,0);(3,2,0);(2,1,0)]], neicount [' ';' ';' '] [['x';'x';'x'];['x';'x';'x'];['x';'x';'x']])
+   Assert.AreEqual([[(0,1,2);(0,2,3);(0,1,2)];[(2,1,2);(3,2,3);(2,1,2)];[(2,1,0);(3,2,0);(2,1,0)]], neicount [' ';' ';' '] [['x';'x';'x'];
+                                                                                                                            ['x';'x';'x'];
+                                                                                                                            ['x';'x';'x']])
 
   [<Test>] member test.
    ``neicount should get triplets of the neighbours`` ()=
@@ -229,12 +238,26 @@ let p = form.Invoke(nst)
 
   [<Test>] member test.
    ``fsdfds `` ()=
-   Assert.AreEqual([[('x',3);('x',5);('x',3)];[('x',5);('x',8);('x',5)];[('x',3);('x',5);('x',3)]], matrixnei [['x';'x';'x'];['x';'x';'x'];['x';'x';'x']])
+   Assert.AreEqual([[('x',3);('x',5);('x',3)];[('x',5);('x',8);('x',5)];[('x',3);('x',5);('x',3)]], matrixToNeighboursCountForCellNotation [['x';'x';'x'];['x';'x';'x'];['x';'x';'x']])
 
 
   [<Test>] member test.
    ``dslkfkdlflksadfas fd`` ()=
-   Assert.AreEqual([[' ';'x';' '];[' ';'x';' '];[' ';'x';' ']], mevolve [[' ';' ';' '];['x';'x';'x'];[' ';' ';' ']])
+   Assert.AreEqual([[' ';'x';' '];
+                    [' ';'x';' '];
+                    [' ';'x';' ']], nextGenerationMatrix [[' ';' ';' '];
+                                            ['x';'x';'x'];
+                                            [' ';' ';' ']])
+
+  [<Test>] member test.
+   ``dsdfadfasdfslkfkdlflksadfas fd`` ()=
+   Assert.AreEqual([[' ';' ';' '];
+                    ['x';'x';'x'];
+                    [' ';' ';' ']], nextGenerationMatrix [[' ';'x';' '];
+                                            [' ';'x';' '];
+                                            [' ';'x';' ']])
+
+
 
    [<Test>] member test.
     ``single line evolution `` ()=
